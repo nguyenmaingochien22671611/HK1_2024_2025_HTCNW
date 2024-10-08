@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T-Speed Company</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Time New Roman', sans-serif;
+        }
+
+        .table-bordered td
+        {
+            border: 2px solid black;
+            color:  blue;
+            text-align: center;
+            padding: 10px;
+        } .table-bordered th 
+        {
+            border: 2px solid black;
+            color:  blue;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .container {
+            margin-top: 10px;
+            color: blue;
+        }
+
+        .text-start ul {
+            list-style-type: none;
+            color: blue;
+            padding-left: 0;
+        }
+
+        .text-start ul li {
+            margin-bottom: 5px;
+        }
+
+        .price-label {
+            font-weight: bold;
+            color: green;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 5px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        th {
+            background-color: #f5f5f5;
+            font-size: 16px;
+        }
+    </style>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="container-fluid mb-3">
+            <img class="w-100" src="../img/banner_car.jpg" alt="Car Banner">
+        </div>
+        <div class="container-fluid">
+            <div id="content1" class="row text-center">
+                <div class="col-lg-4 col-12 p-0">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th colspan="2">Bảng tin thị trường</th>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Vàng</td>
+                        </tr>
+                        <tr>
+                            <td>Mua vào</td>
+                            <td>Bán ra</td>
+                        </tr>
+                        <tr>
+                            <td><label id="vmuavao"></label></td>
+                            <td><label id="vbanra"></label></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">USD</td>
+                        </tr>
+                        <tr>
+                            <td>Mua vào</td>
+                            <td>Bán ra</td>
+                        </tr>
+                        <tr>
+                            <td><label id="umuavao"></label></td>
+                            <td><label id="ubanra"></label></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-lg-4 col-12 p-0">
+                    <table class="table table-bordered table-secondary">
+                        <tr>
+                            <th colspan="2">Cập nhật giá thị trường</th>
+                        </tr>
+                        <tr>
+                            <td>Mua vào</td>
+                            <td><input type="text" id="muavaoip" class="form-input" onkeyup="cau2(); cau4a();"></td>
+                        </tr>
+                        <tr>
+                            <td>Bán ra</td>
+                            <td><input type="text" id="banraip" class="form-input" onkeyup="cau4a();"></td>
+                        </tr>
+                        <tr>
+                            <td>Loại xe</td>
+                            <td>
+                                <select id="chonAnh" class="form-input" onchange="cau3();">
+                                    <option value="../img/Toyota.jpg">Toyota</option>
+                                    <option value="../img/KIA.jpg">KIA</option>
+                                    <option value="../img/Ford.jpg">Ford</option>
+                                    <option value="../img/Civic.jpg">Civic</option>
+                                    <option value="../img/Ferrari.jpg">Ferrari</option>
+                                    <option value="../img/Mercedes.jpg">Mercedes</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="radio" name="rd" value="Vàng" onclick="cau4a();"> Vàng
+                                <input type="radio" name="rd" value="USD" onclick="cau4a();"> USD
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="button" id="update" value="Update" disabled onclick="cau4b();">
+                                <input type="button" id="state" value="State" disabled>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-lg-4 col-12 p-0">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Bảng báo giá</th>
+                        </tr>
+                        <tr>
+                            <td class="text-start">
+                                <ul>
+                                    <li>- Với kiểu dáng thể thao, sang trọng</li>
+                                    <li>- Nổi bật, ít tốn nhiên liệu</li>
+                                    <li>- Kiểu dáng thể thao</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img id="showAnh" src="../img/Toyota.jpg" alt="Selected Car">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="price-label">Giá: 35,000 USD</span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function cau2() {
+            var muavao = document.getElementById("muavaoip");
+            var state = document.getElementById("state");
+            if (muavao.value.trim() != "" && !isNaN(muavao.value.trim())) {
+                state.disabled = false;
+            } else {
+                state.disabled = true;
+            }
+        }
+
+        function cau3() {
+            var chonAnh = document.getElementById("chonAnh");
+            var showAnh = document.getElementById("showAnh");
+            showAnh.src = chonAnh.value;
+        }
+
+        function cau4a() {
+            var state = document.getElementById("state");
+            var banra = document.getElementById("banraip");
+            var radiusValue = document.querySelector('input[name="rd"]:checked');
+            var update = document.getElementById("update");
+
+            if (radiusValue && banra.value.trim() != "" && !isNaN(banra.value.trim())) {
+                update.disabled = false;
+            } else {
+                update.disabled = true;
+            }
+        }
+
+        function cau4b() {
+            var vmuavao = document.getElementById("vmuavao");
+            var vbanra = document.getElementById("vbanra");
+            var umuavao = document.getElementById("umuavao");
+            var ubanra = document.getElementById("ubanra");
+            var muavao = document.getElementById("muavaoip");
+            var banra = document.getElementById("banraip");
+            var radiusValue = document.querySelector('input[name="rd"]:checked').value;
+
+            if (radiusValue == "Vàng") {
+                vmuavao.innerText = muavao.value;
+                vbanra.innerText = banra.value;
+                umuavao.innerText = "";
+                ubanra.innerText = "";
+            } else {
+                vmuavao.innerText = "";
+                vbanra.innerText = "";
+                umuavao.innerText = muavao.value;
+                ubanra.innerText = banra.value;
+            }
+        }
+    </script>
+</body>
+
+</html>

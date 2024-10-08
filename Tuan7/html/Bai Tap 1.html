@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Gallery</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: 'Times New Roman', sans-serif;
+        }
+        
+        .header {
+            padding: 20px;
+            text-align: left;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .card img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .card-body {
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>ANIMAL GALLERY</h1>
+    </div>
+    <div class="gallery">
+        <div class="card">
+            <img src="../img/Lion.jpg" alt="Lion">
+            <div class="card-body">Lion</div>
+        </div>
+        <div class="card">
+            <img src="../img/cat.jpg" alt="Cat">
+            <div class="card-body">Cat</div>
+        </div>
+        <div class="card">
+            <img src="../img/Bird.jpg" alt="Bird">
+            <div class="card-body">Bird</div>
+        </div>
+        <div class="card">
+            <img src="../img/Rhino.jpg" alt="Rhino">
+            <div class="card-body">Rhino</div>
+        </div>
+        <div class="card">
+            <img src="../img/Panda.jpg" alt="Panda">
+            <div class="card-body">Panda</div>
+        </div>
+        <div class="card">
+            <img src="../img/Goat.jpg" alt="Goat">
+            <div class="card-body">Goat</div>
+        </div>
+    </div>
+</body>
+
+</html>
